@@ -8,10 +8,7 @@ const search = async (searchArg, type) => {
     const response = await api(query, {
         search: searchArg
     });
-    }
-    catch (error) {
-        
-    }
+  
 
 
     /*if (response.error) {
@@ -47,6 +44,11 @@ const search = async (searchArg, type) => {
     } else {
         return;
     }
+
+}
+catch (error) {
+    
+}
 };
 
 module.exports = {
