@@ -7,9 +7,9 @@ const search = async (searchArg, type) => {
     const response = await api(query, {
         search: searchArg
     })
-    if (response.error) {
+   /* if (response.error) {
         return response;
-    }
+    }*/
 
     const data = response.Media;
     //console.log(data);
