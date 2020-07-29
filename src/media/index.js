@@ -33,7 +33,7 @@ const search = async (searchArg, type) => {
     if (status) footer += statusString;
 
     return discordMessage({
-        name: data.title.romaji,
+        title: data.title.romaji,
         url: data.siteUrl,
         imageUrl: data.coverImage.large,
         description: data.description,
