@@ -21,6 +21,10 @@ client.on("ready", () => {
     );
 });
 
+client.on('unhandledRejection', error => {
+	console.error('Unhandled promise rejection:', error);
+});
+
 client.on("message", async message => {
     // Ignore other bot messages
     if (message.author.bot && message.author.username != "irc") {
