@@ -84,6 +84,10 @@ client.on("message", async message => {
         case "next":
             response = await next.search(args);
             break;
+        
+        default:
+            console.log("Error in switch")
+            break;
     }
 
     if (response === null) return;
