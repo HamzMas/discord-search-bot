@@ -1,30 +1,23 @@
 require("dotenv").config();
 const Discord = require("discord.js");
 
-const character = require("./character");
-const media = require("./media");
-const staff = require("./staff");
-const user = require("./user");
-const studio = require("./studio");
-
+const character = require("./src/character");
+const media = require("./src/media");
+const staff = require("./src/staff");
+const user = require("./src/user");
+const studio = require("./src/studio");
+const next = require("./src/next");
 const client = new Discord.Client();
 
-const deleteViaReaction = require("./deleteViaReaction");
+//const deleteViaReaction = require("./src/deleteViaReaction");
 
 // Use exclamation mark as the default prefix
-const prefix = process.env.PREFIX || "!";
+const prefix = process.env.PREFIX || ".";
 
 client.on("ready", () => {
     // This event will run if the bot starts, and logs in, successfully.
     console.log(
-        `Bot has started, with ${client.users.size} users, in ${
-            client.channels.size
-        } channels of ${client.guilds.size} guilds.`
-    );
-    console.log(
-        `\nAdd the bot to your server here:\nhttps://discordapp.com/oauth2/authorize?client_id=${
-            client.user.id
-        }&scope=bot&permissions=1024`
+        `Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`
     );
 });
 
@@ -86,6 +79,11 @@ client.on("message", async message => {
         case "user":
             response = await user.search(args);
             break;
+
+        case "n":
+        case "next":
+            response = await next.search(args);
+            break;
     }
 
     if (response === null) return;
@@ -107,27 +105,26 @@ client.on("message", async message => {
         }
     });
 
-    if (command !== "help") {
+    /*if (command !== "help") {
         deleteViaReaction(
             message,
             await replyEmbed,
             replyUrl ? await replyUrl : replyUrl,
             client
         );
-    }
+    }*/
 });
 
 const help = {
     title: "Commands",
     description: `
-Search anime: !a or !anime <anime title>
-Search manga: !m or !manga <manga title>
-Search character: !c or !character <character name>
-Search staff: !p or !person or !staff <staff name>
-Search studio: !s or !studio <studio name>
-Search user: !u or !user <user name>
-
-GitHub: https://github.com/joshstar/AniList-Discord-Bot`
+Search anime: .a or .anime <anime title>
+Search manga: .m or .manga <manga title>
+Search character: .c or .character <character name>
+Search staff: .p or .person or .staff <staff name>
+Search studio: .s or .studio <studio name>
+Search user: .u or .user <user name>
+Search episode countdown: .n or .next <anime title>`
 };
 
-client.login(process.env.TOKEN);
+client.login(process.env.BOT_TOKEN);

@@ -3,8 +3,6 @@ const turndownService = new TurndownService();
 
 const pipe = (op1, op2) => arg => op2(op1(arg));
 
-const removeSpoilers = str => str.replace(/<span[^>]*>.*<\/span>/g, "");
-
 const shorten = str => {
     const markdown = turndownService.turndown(str);
     if (markdown.length > 400) {
@@ -14,7 +12,7 @@ const shorten = str => {
     }
 };
 
-const discordMessage = ({
+const discordMessageNext = ({
     name,
     url,
     imageUrl,
@@ -28,11 +26,11 @@ const discordMessage = ({
         thumbnail: {
             url: imageUrl
         },
-        description: pipe(removeSpoilers, shorten)(description),
+        description: description,
         footer: {
             text: footer
         }
     };
 };
 
-module.exports = discordMessage;
+module.exports = discordMessageNext;
