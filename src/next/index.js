@@ -3,9 +3,16 @@ const query = require("./query");
 const discordMessage = require("../discordMessageNext");
 
 const search = async (searchArg, type) => {
+    
+    try {
     const response = await api(query, {
         search: searchArg
-    }).catch(error => console.log(error));
+    });
+    }
+    catch (error) {
+        
+    }
+
 
     /*if (response.error) {
         return response;
