@@ -1,6 +1,6 @@
 module.exports = `
-query ($search: String, $thisYear: Int = 2020, $type: MediaType = ANIME) {
-    Media(search: $search, type: $type, sort:STATUS_DESC, seasonYear: $thisYear) {
+query ($search: String, $type: MediaType = ANIME) {
+    Media(search: $search, type: $type, sort:STATUS_DESC, status: RELEASING) {
         siteUrl
         title {
             romaji
