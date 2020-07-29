@@ -12,7 +12,7 @@ const search = async (searchArg, type) => {
     }
 
     const data = response.Media;
-    console.log(data);
+    //console.log(data);
     const nextAir = data.nextAiringEpisode;
 
     if (nextAir) {
